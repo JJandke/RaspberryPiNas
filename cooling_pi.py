@@ -1,5 +1,6 @@
 # /usr/bin/python3
 # -*- coding: utf-8 -*-
+# from https://github.com/JJandke
 
 from gpiozero import CPUTemperature
 import pigpio
