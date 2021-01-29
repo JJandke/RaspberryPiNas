@@ -3,7 +3,7 @@
 # from https://github.com/JJandke
 
 from gpiozero import CPUTemperature
-import pigpio
+# import pigpio
 import RPi.GPIO as GPIO
 import time
 import datetime
@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)     # set setwarnings = False if another script uses the GPIO
 GPIO.setup(4, GPIO.OUT)     # raspberry pi fan
 GPIO.setup(17, GPIO.OUT)    # hdd fan
-pi = pigpio.pi()
+# pi = pigpio.pi()
 
 now = datetime.datetime.now()
 cpu = CPUTemperature()
@@ -27,6 +27,7 @@ time.sleep(3)
 GPIO.output(4, GPIO.LOW)
 
 # check the PIs CPU temperature
+print(CPUTemperature)
 while True:
     if cpu.temperature < 40:
         GPIO.output(4, GPIO.LOW)
