@@ -45,4 +45,5 @@ while True:
 
     elif cpu.temperature > 80:
         GPIO.output(4, GPIO.HIGH)
+        GPIO.output(17, GPIO.HIGH)  # HDD fan for better air supply
         time.sleep(1200)    # wait 20 minutes
