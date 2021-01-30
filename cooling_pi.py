@@ -18,34 +18,47 @@ now = datetime.datetime.now()
 cpu = CPUTemperature()
 
 # test fans
-GPIO.output(4, GPIO.HIGH)
+GPIO.output(4, 1)
+GPIO.output(17, 1)
 time.sleep(3)
-GPIO.output(4, GPIO.LOW)
+GPIO.output(4, 0)
+GPIO.output(17, 0)
 time.sleep(3)
-GPIO.output(4, GPIO.HIGH)
+GPIO.output(4, 1)
+GPIO.output(17, 1)
 time.sleep(3)
-GPIO.output(4, GPIO.LOW)
 
 # check the PIs CPU temperature
-print(CPUTemperature)
+print("Temperatur: ", cpu.temperature)
 while True:
+    GPIO.output(4, 1)
+    GPIO.output(17, 1)
     if cpu.temperature < 40:
-        GPIO.output(4, GPIO.LOW)
+        print("Temperatur unter 40°C")
+        GPIO.output(4, 1)
+        GPIO.output(17, 1)
         time.sleep(120)     # wait two minutes
 
     elif 40 <= cpu.temperature < 50:
-        GPIO.output(4, GPIO.HIGH)
+        print("Temperatur zwischen 40 und 50 ")
+        GPIO.output(4, 0)
+        GPIO.output(17, 1)
         time.sleep(240)     # wait four minutes
 
     elif 50 <= cpu.temperature < 60:
-        GPIO.output(4, GPIO.HIGH)
+        print("Temperatur zwischen 50 und 60 ")
+        GPIO.output(4, 0)
+        GPIO.output(17, 1)
         time.sleep(360)     # wait six minutes
 
     elif 60 <= cpu.temperature <= 80:
-        GPIO.output(4, GPIO.HIGH)
+        print("Temperatur zwischen 60 und 80 ")
+        GPIO.output(4, 0)
+        GPIO.output(17, 1)
         time.sleep(600)     # wait ten minutes
 
     elif cpu.temperature > 80:
-        GPIO.output(4, GPIO.HIGH)
-        GPIO.output(17, GPIO.HIGH)  # HDD fan for better air supply
+        print("Temperatur über 80")
+        GPIO.output(4, 0)
+        GPIO.output(17, 0)  # HDD fan for better air supply
         time.sleep(1200)    # wait 20 minutes
