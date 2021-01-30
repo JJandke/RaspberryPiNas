@@ -1,6 +1,11 @@
 # /usr/bin/python3
 # -*- coding: utf-8 -*-
 # from https://github.com/JJandke
+#
+# "1" stands for "off" and "0" stands for "on", because the relay module I use does not switch when the current is present, but at 0V it does.
+# However, I only want current to flow at the relay when the fan is running.
+# Therefore, another wiring is not possible and the problem must be solved on software side.
+# With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 
 from gpiozero import CPUTemperature
 # import pigpio
@@ -17,6 +22,7 @@ GPIO.setup(17, GPIO.OUT)    # hdd fan
 now = datetime.datetime.now()
 cpu = CPUTemperature()
 
+#
 # test fans
 GPIO.output(4, 1)
 GPIO.output(17, 1)
@@ -31,8 +37,6 @@ time.sleep(3)
 # check the PIs CPU temperature
 print("Temperatur: ", cpu.temperature)
 while True:
-    GPIO.output(4, 1)
-    GPIO.output(17, 1)
     if cpu.temperature < 40:
         print("Temperatur unter 40°C")
         GPIO.output(4, 1)
