@@ -8,6 +8,7 @@
 # With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 
 from gpiozero import CPUTemperature
+from datetime import date
 import RPi.GPIO as GPIO
 import time
 import datetime
@@ -26,6 +27,10 @@ else:
     f.close()
 
 logging.basicConfig(filename="/home/ubuntu/log/cooling_pi.log", level=logging.DEBUG)
+
+today = date.today()
+time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
+
 
 try:
     GPIO.setmode(GPIO.BCM)
