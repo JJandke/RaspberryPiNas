@@ -44,15 +44,17 @@ except Exception as e:
 
 
 # test fans
-GPIO.output(4, 1)
-GPIO.output(17, 1)
-time.sleep(3)
 GPIO.output(4, 0)
 GPIO.output(17, 0)
-time.sleep(3)
+time.sleep(1)
 GPIO.output(4, 1)
 GPIO.output(17, 1)
-time.sleep(3)
+time.sleep(1)
+GPIO.output(4, 0)
+GPIO.output(17, 0)
+time.sleep(1)
+GPIO.output(4, 1)
+GPIO.output(17, 1)
 logging.debug("{0}Tested fans".format(log_time))
 
 # check the CPU temperature
