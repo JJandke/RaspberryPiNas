@@ -10,9 +10,10 @@
 from gpiozero import CPUTemperature
 from datetime import date
 import RPi.GPIO as GPIO
+import os
 import time
 import logging
-import os
+import datetime
 
 
 # Create log file for this script
@@ -28,8 +29,8 @@ else:
 logging.basicConfig(filename="/home/ubuntu/log/cooling_pi.log", level=logging.DEBUG)
 
 
-today = date.today()
-log_time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
+day = datetime.datetime.now()
+log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
 
 
 try:
@@ -37,10 +38,10 @@ try:
     GPIO.setwarnings(False)  # set setwarnings = False if another script uses the GPIO
     GPIO.setup(4, GPIO.OUT)  # raspberry pi fan
     GPIO.setup(17, GPIO.OUT)  # hdd fan
-    logging.debug("GPIO successfully configured")
+    logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
-    logging.error("e")
+    logging.error("{0}e".format(log_time))
 
 
 # test fans
@@ -53,12 +54,12 @@ time.sleep(3)
 GPIO.output(4, 1)
 GPIO.output(17, 1)
 time.sleep(3)
-logging.debug("Tested fans")
+logging.debug("{0}Tested fans".format(log_time))
 
-# check the PIs CPU temperature
+# check the CPU temperature
 while True:
-    today = date.today()
-    log_time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
+    day = datetime.datetime.now()
+    log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
     cpu = CPUTemperature()
     cpuStr = str(cpu.temperature)
 
