@@ -11,9 +11,9 @@ from gpiozero import CPUTemperature
 from datetime import date
 import RPi.GPIO as GPIO
 import time
-import datetime
 import logging
 import os
+
 
 # Create log file for this script
 # If the script is executed via cronjob at boot, the content of the log file will automatically be deleted at each boot to save storage space.
@@ -21,15 +21,15 @@ if os.path.isfile("/home/ubuntu/log/cooling_pi.log"):
     os.remove("/home/ubuntu/log/cooling_pi.log")
     f = open("/home/ubuntu/log/cooling_pi.log", "x")
     f.close()
-
 else:
     f = open("/home/ubuntu/log/cooling_pi.log", "x")
     f.close()
 
 logging.basicConfig(filename="/home/ubuntu/log/cooling_pi.log", level=logging.DEBUG)
 
+
 today = date.today()
-time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
+log_time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
 
 
 try:
@@ -42,9 +42,6 @@ try:
 except Exception as e:
     logging.error("e")
 
-now = datetime.datetime.now()
-cpu = CPUTemperature()
-cpuStr = str(cpu.temperature)
 
 # test fans
 GPIO.output(4, 1)
@@ -60,32 +57,37 @@ logging.debug("Tested fans")
 
 # check the PIs CPU temperature
 while True:
+    today = date.today()
+    log_time = today.strftime("%a, %d.%m.%Y-%H:%M:%S ")
+    cpu = CPUTemperature()
+    cpuStr = str(cpu.temperature)
+
     if cpu.temperature < 40:
-        logging.info("Temperature below 40°C => {0}°C".format(cpuStr))
+        logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 1)
         GPIO.output(17, 1)
         time.sleep(120)  # wait for two minutes
 
     elif 40 <= cpu.temperature < 50:
-        logging.info("Temperature between 40°C and 50°C => {0}°C".format(cpuStr))
+        logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(240)  # wait for four minutes
 
     elif 50 <= cpu.temperature < 60:
-        logging.info("Temperature between 50°C and 60°C => {0}°C".format(cpuStr))
+        logging.info("{0}Temperature between 50°C and 60°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(360)  # wait for six minutes
 
     elif 60 <= cpu.temperature <= 80:
-        logging.warning("Temperature between 60°C and 80°C => {0}°C".format(cpuStr))
+        logging.warning("{0}Temperature between 60°C and 80°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(600)  # wait for ten minutes
 
     elif cpu.temperature > 80:
-        logging.warning("Temperature over 80°C => {0}°C".format(cpuStr))
+        logging.warning("{0}Temperature over 80°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
         GPIO.output(17, 0)  # HDD fan for better air supply
         time.sleep(1200)  # wait for 20 minutes
