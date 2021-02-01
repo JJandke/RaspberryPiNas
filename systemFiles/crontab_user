@@ -28,4 +28,4 @@
 #####################################
 
 #cooling
-@reboot /home/ubuntu/code/python/cooling_pi.py
+@reboot /home/ubuntu/code/python/cooling_pi.py > /home/ubuntu/log/cron_user.log 2>&1
