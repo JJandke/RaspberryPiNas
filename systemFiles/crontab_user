@@ -28,4 +28,5 @@
 #####################################
 
 #cooling
-@reboot /home/ubuntu/code/python/cooling_pi.py > /home/ubuntu/log/cron_user.log 2>&1
+@reboot sleep 5; python3 /home/ubuntu/code/python/cooling_pi.py > /home/ubuntu/log/cron_user.log 2>&1
+
