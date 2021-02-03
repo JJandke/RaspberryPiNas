@@ -40,7 +40,7 @@ try:
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
-    logging.error("{0}e".format(log_time))
+    logging.error("{0}".format(log_time), e)
 
 
 # test fans
