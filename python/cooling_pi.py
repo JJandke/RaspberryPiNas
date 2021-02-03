@@ -17,15 +17,15 @@ import datetime
 
 # Create log file for this script
 # If the script is executed via cronjob at boot, the content of the log file will automatically be deleted at each boot to save storage space.
-if os.path.isfile("/home/ubuntu/log/cooling_pi.log"):
-    os.remove("/home/ubuntu/log/cooling_pi.log")
-    f = open("/home/ubuntu/log/cooling_pi.log", "x")
+if os.path.isfile("/home/config/log/cooling_pi.log"):
+    os.remove("/home/config/log/cooling_pi.log")
+    f = open("/home/config/log/cooling_pi.log", "x")
     f.close()
 else:
-    f = open("/home/ubuntu/log/cooling_pi.log", "x")
+    f = open("/home/config/log/cooling_pi.log", "x")
     f.close()
 
-logging.basicConfig(filename="/home/ubuntu/log/cooling_pi.log", level=logging.DEBUG)
+logging.basicConfig(filename="/home/config/log/cooling_pi.log", level=logging.DEBUG)
 
 
 day = datetime.datetime.now()
