@@ -68,7 +68,7 @@ while True:
         logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 1)
         GPIO.output(17, 1)
-        time.sleep(600)  # wait for ten minutes
+        time.sleep(300)  # wait for five minutes
 
     elif 40 <= cpu.temperature < 50:
         logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, cpuStr))
