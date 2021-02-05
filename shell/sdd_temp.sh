@@ -1,0 +1,1 @@
+for i in /dev/sdd ; do sudo hddtemp sata:$i; done

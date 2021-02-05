@@ -40,20 +40,22 @@ except Exception as e:
 
 
 def get_hddtemp():
-    os.system("/home/config/code/shell/hdd1_temp.sh")
-    os.system("/home/config/code/shell/hdd2_temp.sh")
-    # print(hdd1, hdd2)
-    # if hdd1 < hdd2:
-    #     highest = hdd2
-    #     print(highest)
-    # else:
-    #     highest = hdd1
-    #     print(highest)
+    get_hdd1 = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
+    get_hdd2 = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
+    hdd1 = get_hdd1.stdout.read()
+    hdd2 = get_hdd2.stdout.read()
+    print(hdd1, hdd2)
+    if hdd1 < hdd2:
+        highest = hdd2
+        print(highest)
+    else:
+        highest = hdd1
+        print(highest)
 
 
-hdd1 = 1
-hdd2 = 2
-highest = 30
+# hdd1 = 1
+# hdd2 = 2
+# highest = 30
 # test fans
 GPIO.output(17, 0)
 time.sleep(1)
