@@ -42,8 +42,18 @@ except Exception as e:
 def get_hddtemp():
     hdd1 = subprocess.check_output("for i in /dev/sdb ; do sudo hddtemp sata:$i; done")
     hdd2 = subprocess.check_output("for i in /dev/sdc ; do sudo hddtemp sata:$i; done")
+    print(hdd1, hdd2)
+    if hdd1 < hdd2:
+        highest = hdd2
+        print(highest)
+    else:
+        highest = hdd1
+        print(highest)
 
 
+hdd1 = 1
+hdd2 = 2
+highest = 30
 # test fans
 GPIO.output(17, 0)
 time.sleep(1)
@@ -58,35 +68,34 @@ logging.debug("{0}Tested fans".format(log_time))
 while True:
     day = datetime.datetime.now()
     log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
-    cpu = CPUTemperature()
-    cpuStr = str(cpu.temperature)
+    get_hddtemp()
 
-    if cpu.temperature < 40:
-        logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, cpuStr))
+    if highest < 40:
+        logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, highest))
         GPIO.output(4, 1)
         GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
 
-    elif 40 <= cpu.temperature < 50:
-        logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, cpuStr))
+    elif 40 <= highest < 50:
+        logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, highest))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
 
-    elif 50 <= cpu.temperature < 60:
-        logging.info("{0}Temperature between 50°C and 60°C => {1}°C".format(log_time, cpuStr))
+    elif 50 <= highest < 60:
+        logging.info("{0}Temperature between 50°C and 60°C => {1}°C".format(log_time, highest))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(600)  # wait for ten minutes
 
-    elif 60 <= cpu.temperature <= 80:
-        logging.warning("{0}Temperature between 60°C and 80°C => {1}°C".format(log_time, cpuStr))
+    elif 60 <= highest <= 80:
+        logging.warning("{0}Temperature between 60°C and 80°C => {1}°C".format(log_time, highest))
         GPIO.output(4, 0)
         GPIO.output(17, 1)
         time.sleep(900)  # wait for 15 minutes
 
-    elif cpu.temperature > 80:
-        logging.warning("{0}Temperature over 80°C => {1}°C".format(log_time, cpuStr))
+    elif highest > 80:
+        logging.warning("{0}Temperature over 80°C => {1}°C".format(log_time, highest))
         GPIO.output(4, 0)
         GPIO.output(17, 0)  # HDD fan for better air supply
         time.sleep(1200)  # wait for 20 minutes
