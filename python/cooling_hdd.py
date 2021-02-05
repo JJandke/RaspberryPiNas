@@ -40,10 +40,14 @@ except Exception as e:
 
 
 def get_hddtemp():
-    get_hdd1 = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
-    get_hdd2 = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
-    hdd1 = get_hdd1.stdout.read()
-    hdd2 = get_hdd2.stdout.read()
+    get_sda = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
+    get_sdb = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
+    get_sdc = subprocess.Popen("/home/config/code/shell/sdc_temp.sh", shell=True, stdout=subprocess.PIPE)
+    get_sdd = subprocess.Popen("/home/config/code/shell/sdd_temp.sh", shell=True, stdout=subprocess.PIPE)
+    sda = get_sda.stdout.read()
+    sdb = get_sdb.stdout.read()
+    sdc = get_sdc.stdout.read()
+    sdd = get_sdd.stdout.read()
     print(hdd1, hdd2)
     if hdd1 < hdd2:
         highest = hdd2
