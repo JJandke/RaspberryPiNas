@@ -1,1 +1,1 @@
-for i in /dev/sdb ; do sudo hddtemp sata:$i; done
+for i in /dev/sda ; do sudo hddtemp sata:$i; done
