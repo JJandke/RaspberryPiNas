@@ -15,7 +15,7 @@ import logging
 import datetime
 
 # Create log file for this script
-# If the script is executed via cronjob at boot, the content of the log file will automatically be deleted at each boot to save storage space.
+# Running the script via cronjob at boot will delete the log file each time to save disk space and keep the file more organized.
 if os.path.isfile("/home/config/log/cooling_hdd.log"):
     os.remove("/home/config/log/cooling_hdd.log")
     f = open("/home/config/log/cooling_hdd.log", "x")
@@ -54,21 +54,29 @@ while True:
     day = datetime.datetime.now()
     log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
 
+    # This method is a bit awkward since I couldn't get the drive temperature directly because of the SATA-USB adapters.
+    # Therefore I had to use a shell script to read the individual ports and then pass the output to Python, pick out the temperature and format it as an integer.
     try:
+        # run the shell script and grab the output.
         get_sdb = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
         get_sda = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
         sda_out = get_sda.stdout.read()
         sdb_out = get_sdb.stdout.read()
+        # Read out the two numbers of the temperature.
+        # This procedure is necessary because otherwise sda_out would be, for example, d'37' instead of 37.
         sda_out = str(sda_out[-6:-4], "utf-8")
         sdb_out = str(sdb_out[-6:-4], "utf-8")
         sda_temp = int(sda_out)
         sdb_temp = int(sdb_out)
+        # Get the higher temperature of both
         if sda_temp > sdb_temp:
             highest = sda_temp
 
         else:
             highest = sdb_temp
 
+    # If a hard disk dies, the script would crash.
+    # Therefore I catch this error and set highest to 45. So, the fans would cool in any case.
     except Exception as e:
         logging.error("{0}".format(log_time), e)
         highest = 45
