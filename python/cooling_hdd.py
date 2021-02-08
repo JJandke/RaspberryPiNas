@@ -40,13 +40,13 @@ except Exception as e:
 
 
 # test fans
-GPIO.output(17, 0)
-time.sleep(1)
 GPIO.output(17, 1)
 time.sleep(1)
 GPIO.output(17, 0)
 time.sleep(1)
 GPIO.output(17, 1)
+time.sleep(1)
+GPIO.output(17, 0)
 logging.debug("{0}Tested fans".format(log_time))
 
 # check the hdd temperature
@@ -81,7 +81,7 @@ while True:
         logging.error("{0}".format(log_time), e)
         highest = 45
 
-
+    # The time intervals during which the cooling takes place should still be adapted to your own setup.
     if highest < 45:
         logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, highest))
         GPIO.output(17, 1)

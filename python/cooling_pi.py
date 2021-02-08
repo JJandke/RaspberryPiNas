@@ -16,7 +16,7 @@ import datetime
 
 
 # Create log file for this script
-# If the script is executed via cronjob at boot, the content of the log file will automatically be deleted at each boot to save storage space.
+# Running the script via cronjob at boot will delete the log file each time to save disk space and keep the file more organized.
 if os.path.isfile("/home/config/log/cooling_pi.log"):
     os.remove("/home/config/log/cooling_pi.log")
     f = open("/home/config/log/cooling_pi.log", "x")
@@ -64,6 +64,7 @@ while True:
     cpu = CPUTemperature()
     cpuStr = str(cpu.temperature)
 
+    # The time intervals during which the cooling takes place should still be adapted to your own setup.
     if cpu.temperature < 40:
         logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 1)
