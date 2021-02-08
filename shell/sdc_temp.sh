@@ -1,1 +1,0 @@
-for i in /dev/sdc ; do sudo hddtemp sata:$i; done
