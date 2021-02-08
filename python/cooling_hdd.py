@@ -39,32 +39,6 @@ except Exception as e:
     logging.error("{0}".format(log_time), e)
 
 
-# def get_hddtemp():
-#     get_sda = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
-#     get_sdb = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
-#     sda_out = get_sda.stdout.read()
-#     sdb_out = get_sdb.stdout.read()
-#     print("output", sda_out, sdb_out)
-#     sda_out = str(sda_out[-6:-4], "utf-8")
-#     sdb_out = str(sdb_out[-6:-4], "utf-8")
-#     print("Zwischenspeicher:", sda_out, sdb_out)
-#     sda_temp = int(sda_out)
-#     sdb_temp = int(sdb_out)
-#     print("temperature", sda_temp, sdb_temp)
-#     print(sda_temp, sdb_temp)
-#     if sda_temp > sdb_temp:
-#         highest = sda_temp
-#
-#     else:
-#         highest = sdb_temp
-#
-#     return highest
-
-
-
-# hdd1 = 1
-# hdd2 = 2
-# highest = 43
 # test fans
 GPIO.output(17, 0)
 time.sleep(1)
@@ -79,30 +53,28 @@ logging.debug("{0}Tested fans".format(log_time))
 while True:
     day = datetime.datetime.now()
     log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
     try:
         get_sdb = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
         get_sda = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
         sda_out = get_sda.stdout.read()
         sdb_out = get_sdb.stdout.read()
-        print("output", sda_out, sdb_out)
         sda_out = str(sda_out[-6:-4], "utf-8")
         sdb_out = str(sdb_out[-6:-4], "utf-8")
-        print("Zwischenspeicher:", sda_out, sdb_out)
         sda_temp = int(sda_out)
         sdb_temp = int(sdb_out)
-        print("temperature", sda_temp, sdb_temp)
-        print(sda_temp, sdb_temp)
         if sda_temp > sdb_temp:
             highest = sda_temp
 
         else:
             highest = sdb_temp
+
     except Exception as e:
         logging.error("{0}".format(log_time), e)
         highest = 45
 
 
-    if highest < 40:
+    if highest < 45:
         logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, highest))
         GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
