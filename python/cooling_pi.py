@@ -3,7 +3,7 @@
 # from https://github.com/JJandke
 #
 # "1" stands for "off" and "0" stands for "on", because the relay module I use does not switch when the current is present, but at 0V it does.
-# However, I only want current to flow at the relay when the fan is running.
+# However, I only want current to flow at the relay, when the fan is running.
 # Therefore, another wiring is not possible and the problem must be solved on software side.
 # With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 

@@ -3,7 +3,7 @@
 # from https://github.com/JJandke
 #
 # "1" stands for "off" and "0" stands for "on", because the relay module I use does not switch when the current is present, but at 0V it does.
-# However, I only want current to flow at the relay when the fan is running.
+# However, I only want current to flow at the relay, when the fan is running.
 # Therefore, another wiring is not possible and the problem must be solved on software side.
 # With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 
@@ -42,24 +42,24 @@ except Exception as e:
 def get_hddtemp():
     get_sda = subprocess.Popen("/home/config/code/shell/sda_temp.sh", shell=True, stdout=subprocess.PIPE)
     get_sdb = subprocess.Popen("/home/config/code/shell/sdb_temp.sh", shell=True, stdout=subprocess.PIPE)
-    get_sdc = subprocess.Popen("/home/config/code/shell/sdc_temp.sh", shell=True, stdout=subprocess.PIPE)
-    get_sdd = subprocess.Popen("/home/config/code/shell/sdd_temp.sh", shell=True, stdout=subprocess.PIPE)
-    sda = get_sda.stdout.read()
-    sdb = get_sdb.stdout.read()
-    sdc = get_sdc.stdout.read()
-    sdd = get_sdd.stdout.read()
-    print(hdd1, hdd2)
-    if hdd1 < hdd2:
-        highest = hdd2
-        print(highest)
+    sda_out = get_sda.stdout.read()
+    sdb_out = get_sdb.stdout.read()
+    sda_temp = sda_out[-4:-2]
+    sdb_temp = sdb_out[-4:-2]
+    print(sda_temp, sdb_temp)
+    if sda_temp > sdb_temp:
+        highest = sda_temp
+
     else:
-        highest = hdd1
-        print(highest)
+        highest = sdb_temp
+
+    return highest
+
 
 
 # hdd1 = 1
 # hdd2 = 2
-# highest = 30
+# highest = 43
 # test fans
 GPIO.output(17, 0)
 time.sleep(1)
