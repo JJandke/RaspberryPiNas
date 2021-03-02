@@ -45,11 +45,9 @@ except Exception as e:
 
 # test fans
 GPIO.output(4, 0)
-GPIO.output(17, 0)
-time.sleep(10)
+time.sleep(30)
 GPIO.output(4, 1)
-GPIO.output(17, 1)
-logging.debug("{0}Tested fans".format(log_time))
+logging.debug("{0}Tested Raspberry Pi fan".format(log_time))
 
 # check the CPU temperature
 while True:
@@ -62,29 +60,24 @@ while True:
     if cpu.temperature < 40:
         logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 1)
-        GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
 
     elif 40 <= cpu.temperature < 50:
         logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
-        GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
 
     elif 50 <= cpu.temperature < 60:
         logging.info("{0}Temperature between 50°C and 60°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
-        GPIO.output(17, 1)
         time.sleep(600)  # wait for ten minutes
 
     elif 60 <= cpu.temperature <= 80:
         logging.warning("{0}Temperature between 60°C and 80°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
-        GPIO.output(17, 1)
         time.sleep(900)  # wait for 15 minutes
 
     elif cpu.temperature > 80:
         logging.warning("{0}Temperature over 80°C => {1}°C".format(log_time, cpuStr))
         GPIO.output(4, 0)
-        GPIO.output(17, 0)  # HDD fan for better air supply
         time.sleep(1200)  # wait for 20 minutes
