@@ -38,13 +38,6 @@ try:
 except Exception as e:
     logging.error("{0}".format(log_time), e)
 
-
-# test fans
-GPIO.output(17, 0)
-time.sleep(10)
-GPIO.output(17, 1)
-logging.debug("{0}Tested fans".format(log_time))
-
 # check the hdd temperature
 while True:
     day = datetime.datetime.now()
@@ -78,18 +71,18 @@ while True:
         highest = 45
 
     # The time intervals during which the cooling takes place should still be adapted to your own setup.
-    if highest < 45:
-        logging.info("{0}Temperature below 40°C => {1}°C".format(log_time, highest))
+    if highest < 35:
+        logging.info("{0}Temperature below 35°C => {1}°C".format(log_time, highest))
         GPIO.output(17, 1)
         time.sleep(300)  # wait for five minutes
 
-    elif 40 <= highest < 50:
-        logging.info("{0}Temperature between 40°C and 50°C => {1}°C".format(log_time, highest))
+    elif 35 <= highest < 45:
+        logging.info("{0}Temperature between 35°C and 45°C => {1}°C".format(log_time, highest))
         GPIO.output(17, 0)
         time.sleep(300)  # wait for five minutes
 
-    elif 50 <= highest < 60:
-        logging.info("{0}Temperature between 50°C and 60°C => {1}°C".format(log_time, highest))
+    elif 45 <= highest < 60:
+        logging.info("{0}Temperature between 45°C and 60°C => {1}°C".format(log_time, highest))
         GPIO.output(17, 0)
         time.sleep(600)  # wait for ten minutes
 
