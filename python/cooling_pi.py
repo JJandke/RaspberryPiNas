@@ -36,7 +36,6 @@ try:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)  # set setwarnings = False if another script uses the GPIO
     GPIO.setup(4, GPIO.OUT)  # raspberry pi fan
-    GPIO.setup(17, GPIO.OUT)  # hdd fan
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
