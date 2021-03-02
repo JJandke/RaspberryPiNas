@@ -38,6 +38,12 @@ try:
 except Exception as e:
     logging.error("{0}".format(log_time), e)
 
+# test fan
+GPIO.output(17, 0)
+time.sleep(30)
+GPIO.output(17, 1)
+logging.debug("{0}Tested hdd fan".format(log_time))
+
 # check the hdd temperature
 while True:
     day = datetime.datetime.now()

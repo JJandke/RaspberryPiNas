@@ -43,7 +43,7 @@ except Exception as e:
     logging.error("{0}".format(log_time), e)
 
 
-# test fans
+# test fan
 GPIO.output(4, 0)
 time.sleep(30)
 GPIO.output(4, 1)
