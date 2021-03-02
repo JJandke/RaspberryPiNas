@@ -74,7 +74,7 @@ while True:
     # Therefore I catch this error and set highest to 45. So, the fans would cool in any case.
     except Exception as e:
         logging.error("{0}".format(log_time), e)
-        highest = 45
+        highest = 40
 
     # The time intervals during which the cooling takes place should still be adapted to your own setup.
     if highest < 35:
