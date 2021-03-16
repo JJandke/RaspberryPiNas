@@ -1,0 +1,2 @@
+# Be sure to use the correct ID and update initramfs using "sudo update-initramfs -u".
+usb-storage.quirks=174c:55aa:u
