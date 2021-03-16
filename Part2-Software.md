@@ -17,7 +17,7 @@
 
 - There you should give the device a static IP, so that you don't have any problems later when mounting e.g. in fstab.
 
-  ![image-20210312092815611](../../../.config/Typora/typora-user-images/image-20210312092815611.png)
+## screenshotRouter
 
   
 
