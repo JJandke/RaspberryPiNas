@@ -17,7 +17,7 @@
 
 - There you should give the device a static IP, so that you don't have any problems later when mounting e.g. in fstab.
 
-## screenshotRouter
+![router](https://user-images.githubusercontent.com/56551925/111346906-f9ce9a00-867e-11eb-8b17-d3e45a9af534.png)
 
   
 
