@@ -2,4 +2,4 @@
 # Mount NAS RAID1 configuration #
 #################################
 
-/dev/md0                /media/nas1             ext4            defaults        0       2
+/dev/md0                /mnt/nas        ext4            defaults        0       2
