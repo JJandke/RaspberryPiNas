@@ -14,7 +14,7 @@
 
 - After the SD card is in the Pi and it is turned on, it should appear on your router's user interface after a few seconds.
 
-- At my Fritz!Box you can find the IP under *Home Tetworks -> Mesh -> Other connected or registered home network devices*.
+- At my Fritz!Box you can find the IP under *Home Networks -> Mesh -> Other connected or registered home network devices*.
 
 - There you should give the device a static IP, so that you don't have any problems later when mounting e.g. in fstab.
 
