@@ -2,10 +2,11 @@
 
 ### Install operating system
 
-- To get the operating system onto the SD card, we use the [Pi imager](https://www.raspberrypi.org/software/).
-- There we select *Choose OS -> Other general purpose OS -> Ubuntu -> Ubuntu Server 20.XX.x LTS (RPi 3/4/400)*.
+- To get the operating system onto the SD card, we will use the [Pi imager](https://www.raspberrypi.org/software/).
+- There, we select *Choose OS -> Other general purpose OS -> Ubuntu -> Ubuntu Server 20.XX.x LTS (RPi 3/4/400)*.
 - And then choose your SD card.
-- Then press "Write" The process took me about 6 minutes.
+- Then press "Write".
+- The process took me about 6 minutes.
 
 
 
