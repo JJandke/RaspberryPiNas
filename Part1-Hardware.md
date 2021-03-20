@@ -4,10 +4,10 @@
 
 
 
-![BeforeAfterCase](https://user-images.githubusercontent.com/56551925/111842414-b898ed00-88ff-11eb-9d52-517d7f32cb9e.jpg)
+![BeforeAfterCase](https://user-images.githubusercontent.com/56551925/111883854-1a1f9100-89be-11eb-9ec6-4a5eba319a4f.jpg)
 
 
-![BeforeAfter](https://user-images.githubusercontent.com/56551925/111842452-c8b0cc80-88ff-11eb-8c45-b7e3749380ec.jpg)
+![BeforeAfter](https://user-images.githubusercontent.com/56551925/111883862-21df3580-89be-11eb-9e3b-cf0f6020e6c0.jpg)
 
 
 ### Story:
@@ -64,7 +64,7 @@ If you are **only** interested in the **software** part and setting up the NAS w
 - ​	Diode (1N4001)
 - ​	Jumper cables
 
-![Components_lr](https://user-images.githubusercontent.com/56551925/111842551-ec741280-88ff-11eb-9a65-ca6d4b67897b.jpg)
+![Components_lr](https://user-images.githubusercontent.com/56551925/111883871-315e7e80-89be-11eb-8808-b6d4dbe8cb20.jpg)
 
 
 
@@ -75,7 +75,7 @@ If you are **only** interested in the **software** part and setting up the NAS w
 
 After opening the 19" case, and removing the actual PCB, I was also able to unscrew the front panel and get access to the **fans**. Of course, these had to be **cleaned** first. I decided to further disassemble the **front** panel and **spray paint** it completely **black**. In order for the paint to hold better, I had to sand it down a bit.
 
-![Case](https://user-images.githubusercontent.com/56551925/111842716-2a713680-8900-11eb-8995-67e5aac8c95c.jpg)
+![Case](https://user-images.githubusercontent.com/56551925/111883898-623eb380-89be-11eb-8749-140fd528fdc3.jpg)
 
 
 
@@ -84,7 +84,7 @@ Then I had to think about the actual allocation of the devices in the case. This
 
 Now that I knew what should go where, I could start attaching the parts. The **Ethernet feed through** I could simply **attach** to the place of a previous **speakOn** **port**, for this I only had to drill two holes for the screws. For the **relay**, the **24 V power supply** and the **Raspberry Pi**, I marked the **holes** and punched them so I could drill them with a 2.5 and **3mm** drill bit. I was able to immediately screw the 24V power supply to the bottom of the case. But since the **relay** module was **not insulated** at the bottom side of the PCB, I had to **mount it on spacers** and attach a small plastic sheet.
 
-![Mounting](https://user-images.githubusercontent.com/56551925/111842637-0c0b3b00-8900-11eb-9fa2-d82b19f6c8ca.jpg)
+![Mounting](https://user-images.githubusercontent.com/56551925/111883909-6f5ba280-89be-11eb-9345-6a6ddf9a31aa.jpg)
 
 
 
@@ -93,7 +93,7 @@ I had long been wondering how I would **mount** the **Raspberry Pi**. In the end
 
 In order not to damage the hard drives during assembling the NAS, I took two old ones to mark the proportions. Then the hard drives were fixed with metal brackets. To **allow air** to get under the hard drives and **reduce vibrations** at the same time, I packed **rubber spacers** between both, the metal brackets and the case bottom.
 
-![Drives](https://user-images.githubusercontent.com/56551925/111842764-3fe66080-8900-11eb-9435-40ee3836c760.jpg)
+![Drives](https://user-images.githubusercontent.com/56551925/111883953-adf15d00-89be-11eb-98e4-7316923f7c14.jpg)
 
 
 After all the important components were fixed, I could start the wiring.
@@ -115,10 +115,11 @@ After an isolation test, I was able to plug it in for the first test. Fortunatel
 
 Now that the AC part is done, I'll take care of the DC part.
 
-![Schaltplan](https://user-images.githubusercontent.com/56551925/111842858-6ad0b480-8900-11eb-9080-751f3d394c66.png)
+![ACCircuitDiagram](https://user-images.githubusercontent.com/56551925/111884027-2526f100-89bf-11eb-8a93-77edce941b24.png)
 
+![RPINAs00051](https://user-images.githubusercontent.com/56551925/111884042-396aee00-89bf-11eb-84e6-566a5e8d6e1e.jpg)
 
-![ACWiring](https://user-images.githubusercontent.com/56551925/111842916-7fad4800-8900-11eb-90aa-5de4673a1166.jpg)
+![ACWiring](https://user-images.githubusercontent.com/56551925/111884053-50a9db80-89bf-11eb-8a10-b0990ccb69a0.jpg)
 
 
 
