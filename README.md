@@ -66,7 +66,7 @@ If you are **only** interested in the **software** part and setting up the NAS w
 - ​	Diode (1N4001)
 - ​	Jumper cables
 
-![Components_lr](https://user-images.githubusercontent.com/56551925/111883871-315e7e80-89be-11eb-8808-b6d4dbe8cb20.jpg)
+![Components_lr](https://user-images.githubusercontent.com/56551925/112286936-22145500-8c8c-11eb-85e4-9198a3d877bb.jpg)
 
 We'll continue with the hardware in part 1.
 If you are only interested in setting up and configuring the server on a Raspberry Pi, you can immediately jump to part 2.

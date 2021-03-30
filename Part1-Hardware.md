@@ -20,6 +20,9 @@ Now that I knew what should go where, I could start attaching the parts. The **E
 
 I had long been wondering how I would **mount** the **Raspberry Pi**. In the end, the best **solution** was to **mark** the four **holes of the base plate**, with a scriber on the bottom of the amp, and then **screw** the **Raspberry Pi case to the power amp case** with longer screws. Since the fans were clean again in the meantime, I could screw them into the case as well.
 
+![RPINAs00046](https://user-images.githubusercontent.com/56551925/112290035-21c98900-8c8f-11eb-90cc-b160c2a0499a.jpg)
+
+
 In order not to damage the hard drives during assembling the NAS, I took two old ones to mark the proportions. Then the hard drives were fixed with metal brackets. To **allow air** to get under the hard drives and **reduce vibrations** at the same time, I packed **rubber spacers** between both, the metal brackets and the case bottom.
 
 ![Drives](https://user-images.githubusercontent.com/56551925/111883953-adf15d00-89be-11eb-98e4-7316923f7c14.jpg)
