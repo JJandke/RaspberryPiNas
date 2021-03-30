@@ -48,15 +48,15 @@ If you are **only** interested in the **software** part and setting up the NAS w
 
 *Note: For a pure Raspberry Pi 4 NAS without amp case, we only need those articles in bold.*
 
-- ​	**Raspberry Pi 4B** (I recommend the 8GB RAM version, as it is not much more expensive compared to other NAS solutions)
-- ​	**Power supply** (PSU) for the Pi (5V, 3A, 45W, UBS-C, surge- and overload protection)
-- ​	**Micro SD card** (32GB)
-- ​	**Active cooling case** for the Pi
-- ​	**USB 3 Hub** (This turned out later)
-- ​	**Active USB-SATA adapter**
-- ​	**Hard drives** (4TB WD red)
-- ​	Power supply for the case fans (24V, 4.5A)
-- ​	2 relay board (to switch the two case fans and the fan on the Raspberry Pi)
+- ​	**[Raspberry Pi 4B](https://www.amazon.de/Raspberry-Pi-Ersatzteil-Single-Board-102110421/dp/B0899VXM8F/)** (I recommend the 8GB RAM version, as it is not much more expensive compared to other NAS solutions)
+- ​	**[Power supply](https://www.amazon.de/Voltcraft-CNPS-45-USB-C-LADEGER%C3%84T/dp/B07DC97TMM/ref=sr_1_13?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=voltcraft+usb+c&qid=1617098220&sr=8-13)** (PSU) for the Pi (5V, 3A, 45W, UBS-C, surge- and overload protection)
+- ​	**[Micro SD card](https://www.amazon.de/SanDisk-microSDHC-Speicherkarte-SD-Adapter-App-Leistung/dp/B08GY9NYRM/ref=sr_1_4?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=sandisk+micro+sd&qid=1617098301&sr=8-4)** (32GB)
+- ​	**[Active cooling case](https://www.amazon.de/Miuzei-Raspberry-Aluminium-K%C3%BChlventilator-W%C3%A4rmeleitklebeband/dp/B08FSP9VL6/ref=sr_1_36?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=raspberry+pi+4+case&qid=1617098453&sr=8-36)** for the Pi
+- ​	**[USB 3 Hub](https://www.amazon.de/dp/B01K7RR3W8/?coliid=I2D76GQUSANVR8&colid=19V8MGZC0S3K3&psc=1&ref_=lv_ov_lig_dp_it)** (This turned out later)
+- ​	**[Active USB-SATA adapter](https://www.amazon.de/Inateck-Konverter-Adapter-Laufwerke-Netzteil/dp/B00N4JLNXM/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=usb-sata+adapter+active&qid=1617099266&s=computers&sr=1-5)**
+- ​	**[Hard drives](https://www.amazon.de/interne-NAS-Festplatte-Festplatte-NASware-Technologie-Cache/dp/B083XVY99B/ref=sr_1_4?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=wd+red+4tb+64mb&qid=1617100376&s=computers&sr=1-4)** (4TB WD red)
+- ​	[Power supply](https://www.amazon.de/Schaltnetzteil-Netzteil-MeanWell-LRS-100-24-Treiber/dp/B06XWR8RGJ/ref=sr_1_13?dchild=1&keywords=meanwell+24v&qid=1617100444&sr=8-13) for the case fans (24V, 4.5A)
+- ​	[2 relay module](https://www.amazon.de/YXPCARS-Relais-Optokoppler-Arduino-Raspberry/dp/B08G1587VT/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=2+relay+module&qid=1617100501&sr=8-5) (to switch the two case fans and the fan on the Raspberry Pi)
 - ​	Ethernet feedthrough (To connect an Ethernet cable to the case, as it would be with a real server)
 - ​	Ethernet patch cable (20cm)
 - ​	Switch (250V, 10A, for the Case)
