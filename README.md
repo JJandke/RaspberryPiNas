@@ -64,7 +64,7 @@ If you are **only** interested in the **software** part and setting up the NAS w
 - ​	MC 7805 (Fixed voltage regulator)
 - ​	Capacitors (2200µF, 10 µF, 100nF – more details later)
 - ​	Diode (1N4001)
-- ​	Jumper cables
+- ​	[Jumper cables](https://www.amazon.de/Female-Female-Male-Female-Male-Male-Steckbr%C3%BCcken-Drahtbr%C3%BCcken-bunt/dp/B01EV70C78/ref=sr_1_1_sspa?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=jumper+cable&qid=1617310413&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzNTA0UFZTSE5JQzJSJmVuY3J5cHRlZElkPUEwNzc4MjQ0MjlPREg1WkpOUkNBRCZlbmNyeXB0ZWRBZElkPUExMDAwNjg1MUFSNzFTUlhGM0hSOSZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)
 
 ![Components_lr](https://user-images.githubusercontent.com/56551925/112286936-22145500-8c8c-11eb-85e4-9198a3d877bb.jpg)
 
