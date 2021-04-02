@@ -49,18 +49,18 @@ If you are **only** interested in the **software** part and setting up the NAS w
 *Note: For a pure Raspberry Pi 4 NAS without amp case, we only need those articles in bold.*
 
 - ​	**[Raspberry Pi 4B](https://www.amazon.com/dp/B0899VXM8F/)** (I recommend the 8GB RAM version, as it is not much more expensive compared to other NAS solutions)
-- ​	**[Power supply](https://www.amazon.com/dp/B07DC97TMM/)** (PSU) for the Pi (5V, 3A, 45W, UBS-C, surge- and overload protection)
+- ​	**[Power supply](https://www.amazon.de/dp/B07DC97TMM/)** (PSU) for the Pi (5V, 3A, 45W, UBS-C, surge- and overload protection)
 - ​	**[Micro SD card](https://www.amazon.com/dp/B08GY9NYRM/)** (32GB)
 - ​	**[Active cooling case](https://www.amazon.com/dp/B08FSP9VL6/)** for the Pi
 - ​	**[USB 3 Hub](https://www.amazon.com/dp/B01K7RR3W8/)** (This turned out later)
-- ​	**[Active USB-SATA adapter](https://www.amazon.com/dp/B00N4JLNXM/)**
+- ​	**[Active USB-SATA adapter](https://www.amazon.de/dp/B00N4JLNXM/)**
 - ​	**[Hard drives](https://www.amazon.com/dp/B083XVY99B/)** (4TB WD red)
-- ​	[24V Power supply](https://www.amazon.com/dp/B06XWR8RGJ/) for the case fans (24V, 4.5A)
-- ​	[2 relay module](https://www.amazon.com/dp/B08G1587VT/) (to switch the two case fans and the fan on the Raspberry Pi)
+- ​	[24V Power supply](https://www.amazon.de/dp/B06XWR8RGJ/) for the case fans (24V, 4.5A)
+- ​	[2 relay module](https://www.amazon.de/dp/B08G1587VT/) (to switch the two case fans and the fan on the Raspberry Pi)
 - ​	[Ethernet feedthrough](https://www.amazon.com/dp/B002BEWOYI/) (To connect an Ethernet cable to the case, as it would be with a real server)
-- ​	[Ethernet patch cable](https://www.amazon.com/dp/B018M6PR10/) (25cm)
-- ​	[Switch](https://www.amazon.com/dp/B07TTJWMT3/) (250V, 10A, for the Case)
-- ​	[Fuse](https://www.amazon.com/dp/B001C6JSAY/) [(4.5A)](https://www.amazon.com/dp/B076F223W5/)
+- ​	[Ethernet patch cable](https://www.amazon.de/dp/B018M6PR10/) (25cm)
+- ​	[Switch](https://www.amazon.de/dp/B07TTJWMT3/) (250V, 10A, for the Case)
+- ​	[Fuse](https://www.amazon.de/dp/B001C6JSAY/) [(4.5A)](https://www.amazon.com/dp/B076F223W5/)
 - ​	MC 7805 (Fixed voltage regulator)
 - ​	Capacitors (2200µF, 10 µF, 100nF – more details later)
 - ​	Diode (1N4001)
