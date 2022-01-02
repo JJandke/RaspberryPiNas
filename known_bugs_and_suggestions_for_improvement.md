@@ -56,7 +56,8 @@ This makes it impossible for a softwareraid to exist.
   [12414.494229] usb 2-1.2: reset SuperSpeed Gen 1 USB device number 3 using xhci_hcd
   ```
 
-  
 
-- 
 
+## Using an ATX power supply
+
+- As "mac587" and "dingo27 Mobile" suggested on [hackster.io](https://www.hackster.io/jjandke/raspberry-pi-4-nas-out-of-an-old-power-amplifier-807d5a#comments) you could also use a (Flex)ATX, SFX or PICO power supply from an old PC. These supply 12V directly for hard disks with suitable connectors and 5V with which other devices like 5 or 12V fans, LEDs and the Raspberry Pi itself could be supplied.
