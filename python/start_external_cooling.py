@@ -80,7 +80,7 @@ def cooling():
     if not os.path.exists("/home/config/code/python/.kill_cooling.txt"):
         logging.debug("{0}Killswitch does not exist".format(log_time))
 
-        os.mknod("/home/config/code/python/.kill_cooling.tx")
+        os.mknod("/home/config/code/python/.kill_cooling.txt")
         logging.debug("{0}Sucessfully created killswitch".format(log_time))                   # create killswitch file to show that cooling is active
 
     GPIO.output(17, 0)
