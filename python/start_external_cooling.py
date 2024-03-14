@@ -86,49 +86,51 @@ def cooling():
 
     GPIO.output(17, 0)
     logging.debug("{0}GPIO Output #17 has been set to 0 = On".format(log_time))
-    if(pwm_speed <= 250):
-        if os.path.exists("/home/config/code/python/.kill_cooling.txt"):        # checking if killswitch exists...
-            logging.debug("{0}Killswitch is existing, therefore starting to cool the system...".format(log_time))
 
-            pwm.set_PWM_dutycycle(23, pwm_speed)
-            print(pwm_speed)
-            logging.debug("{0}pwm-speed for GPIO Output #23 has been set to the current pwm_speed".format(log_time))
+    while(True):
+            if(pwm_speed <= 250):
+                if os.path.exists("/home/config/code/python/.kill_cooling.txt"):        # checking if killswitch exists...
+                    logging.debug("{0}Killswitch is existing, therefore starting to cool the system...".format(log_time))
 
-            pwm_speed = pwm_speed + 10
-            logging.debug("{0}pwm_speed has been increased by 10.".format(log_time))
+                    pwm.set_PWM_dutycycle(23, pwm_speed)
+                    print(pwm_speed)
+                    logging.debug("{0}pwm-speed for GPIO Output #23 has been set to the current pwm_speed".format(log_time))
 
-            time.sleep(10)
-            logging.debug("{0}We waited 10s to proceed".format(log_time))
+                    pwm_speed = pwm_speed + 10
+                    logging.debug("{0}pwm_speed has been increased by 10.".format(log_time))
 
-        else:
-            logging.debug("{0}Killswitch did not exist, stoping cooling...".format(log_time))
+                    time.sleep(10)
+                    logging.debug("{0}We waited 10s to proceed".format(log_time))
 
-            GPIO.output(17, 1)                                                  # ...if not, stop cooling
-            logging.debug("{0}GPIO Output #17 has been set to 1".format(log_time))
+                else:
+                    logging.debug("{0}Killswitch did not exist, stoping cooling...".format(log_time))
 
-            pwm.set_PWM_dutycycle(23, 0)
-            logging.debug("{0}pwm-speed for GPIO Output #23 has been set to 0".format(log_time))
-            logging.debug("{0}Exiting skript... bye!".format(log_time))
+                    GPIO.output(17, 1)                                                  # ...if not, stop cooling
+                    logging.debug("{0}GPIO Output #17 has been set to 1".format(log_time))
 
-            sys.exit(0)
+                    pwm.set_PWM_dutycycle(23, 0)
+                    logging.debug("{0}pwm-speed for GPIO Output #23 has been set to 0".format(log_time))
+                    logging.debug("{0}Exiting skript... bye!".format(log_time))
 
-    else:
-        logging.debug("{0}Reached max. pwm-speed. Keeping it until cooling gets interrupted".format(log_time))
-        while True:
-            if os.path.exists("/home/config/code/python/.kill_cooling.txt"):
-                time.sleep(20)
-            
+                    sys.exit(0)
+
             else:
-                logging.debug("{0}Killswitch did not exist, stoping cooling...".format(log_time))
-                
-                GPIO.output(17, 1)                                                  # ...if not, stop cooling
-                logging.debug("{0}GPIO Output #17 has been set to 1".format(log_time))
-                
-                pwm.set_PWM_dutycycle(23, 0)
-                logging.debug("{0}pwm-speed for GPIO Output #23 has been set to 0".format(log_time))
-                logging.debug("{0}Exiting skript... bye!".format(log_time))
-                
-                sys.exit(0)
+                logging.debug("{0}Reached max. pwm-speed. Keeping it until cooling gets interrupted".format(log_time))
+                while True:
+                    if os.path.exists("/home/config/code/python/.kill_cooling.txt"):
+                        time.sleep(20)
+                    
+                    else:
+                        logging.debug("{0}Killswitch did not exist, stoping cooling...".format(log_time))
+                        
+                        GPIO.output(17, 1)                                                  # ...if not, stop cooling
+                        logging.debug("{0}GPIO Output #17 has been set to 1".format(log_time))
+                        
+                        pwm.set_PWM_dutycycle(23, 0)
+                        logging.debug("{0}pwm-speed for GPIO Output #23 has been set to 0".format(log_time))
+                        logging.debug("{0}Exiting skript... bye!".format(log_time))
+                        
+                        sys.exit(0)
 
 
 try:
