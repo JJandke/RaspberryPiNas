@@ -13,11 +13,8 @@ import sys
 import time
 import pigpio
 import logging
+import datetime
 import RPi.GPIO as GPIO
-from datetime import datetime
-
-
-
 
 
 logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
@@ -32,7 +29,6 @@ else:
     pass
 
 
-
 try:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)     # set setwarnings = False if another script uses the GPIO
@@ -44,7 +40,6 @@ try:
 
 except Exception as e:
     logging.error("{0}".format(log_time), e)
-
 
 
 # activate fans
