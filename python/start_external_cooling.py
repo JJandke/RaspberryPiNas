@@ -93,7 +93,7 @@ def cooling():
                     logging.debug("{0}Killswitch is existing, therefore starting to cool the system...".format(log_time))
 
                     pwm.set_PWM_dutycycle(23, pwm_speed)
-                    print(pwm_speed)
+                    #print(pwm_speed)
                     logging.debug("{0}pwm-speed for GPIO Output #23 has been set to the current pwm_speed".format(log_time))
 
                     pwm_speed = pwm_speed + 10
