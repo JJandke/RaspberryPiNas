@@ -18,7 +18,7 @@ import RPi.GPIO as GPIO
 
 
 logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
-now = datetime.now()
+now = datetime.datetime.now()
 log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
 
 # Create log file if it does not exist.
