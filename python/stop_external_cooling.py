@@ -30,4 +30,4 @@ try:
     logging.info("{0}Stopped external cooling".format(log_time))
 
 except Exception as e:
-    logging.debug("{0}Could not stop external: {1}".format(log_time, e))
+    logging.debug("{0}Could not stop external cooling: {1}".format(log_time, e))
