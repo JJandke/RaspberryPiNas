@@ -63,15 +63,20 @@ while True:
     elif cpu.temperature >= 50:
         logging.info("{0}\tCPU Temperature is {1}°C, requesting cooling".format(log_time, cpuStr))
         r = requests.get("http://rpi-nas/start_cooling.php")
+        logging.debug("{0}Requested URL, now sleeping".format(log_time))
         time.sleep(update_tmp)
+        logging.debug("{0}Slept for log_time seconds.".format(log_time))
 
         while cpu.temperature >= 50:
+            logging.debug("{0}CPU-Temperature still > 50°C, sleeping".format(log_time))
             time.sleep(update_tmp)
+            logging.debug("{0}Slept again for log_time seconds".format(log_time))
 
+        logging.debug("{0}CPU-Temperature now < 50°C, requesting to stop cooling".format(log_time))
         s = requests.get("http://rpi-nas/stop_cooling.php")
+        logging.debug("{0}Requested to stop cooling".format(log_time))
 
 
     else:
         logging.info("{0}\tSomething fucked up... Exiting!".format(log_time))
         sys.exit(-1)
-        
