@@ -1,4 +1,4 @@
-# /usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # from https://github.com/JJandke
 #
@@ -19,8 +19,9 @@ import RPi.GPIO as GPIO
 
 try:
     logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
-    day = datetime.datetime.now()
-    log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+    now = datetime.now()
+    log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
 except Exception as e:
     print("FATAL ERROR! - Could not set up logging, exiting!")
     sys.exit(-1)
