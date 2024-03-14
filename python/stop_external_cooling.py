@@ -9,6 +9,13 @@ import logging
 import pigpio
 import os
 
+logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
+logging.debug("start assigning variables")
+pi = pigpio.pi()
+logging.debug("assigned pi = pigpio.pi")
+now = datetime.now()
+log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
 # Create log file if it does not exist.
 if not os.path.isfile("/home/config/log/external_cooling.log"):
     f = open("/home/config/log/external_cooling.log", "x")
@@ -16,10 +23,7 @@ if not os.path.isfile("/home/config/log/external_cooling.log"):
 else:
     pass
 
-logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
-pi = pigpio.pi()
-now = datetime.now()
-log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
 
 # It checks if the files exist. If they do, they will be deleted. If they do not exist, fade.py or strobe.py will stop if they are running.
 try:
