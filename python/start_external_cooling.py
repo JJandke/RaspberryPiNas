@@ -45,7 +45,7 @@ except Exception as e:
 
 # activate fans
 def cooling():
-    if not os.path.exists("/home/config/code/python/.kill_cooling.tx"):
+    if not os.path.exists("/home/config/code/python/.kill_cooling.txt"):
         os.mknod("/home/config/code/python/.kill_cooling.tx")                   # create killswitch file to show that cooling is active
     GPIO.output(17, 0)
     for pwm_speed in range(255):
