@@ -16,7 +16,7 @@ import os
 
 logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
 now = datetime.now()
-pwm = pigpio.py()
+pwm = pigpio.pi()
 log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
 
 
