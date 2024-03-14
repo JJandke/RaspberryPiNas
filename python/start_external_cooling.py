@@ -77,6 +77,8 @@ except Exception as e:
 
 # activate fans
 def cooling():
+    pwm_speed = 100
+    logging.debug("{0}pwm_speed has been set to 100 again".format(log_time))
     if not os.path.exists("/home/config/code/python/.kill_cooling.txt"):
         logging.debug("{0}Killswitch does not exist".format(log_time))
 
