@@ -17,15 +17,13 @@ import datetime
 
 pwm = pigpio.pi()
 
-# Create log file for this script
-# Running the script will delete the old log file each time to save disk space and keep the file more organized.
-if os.path.isfile("/home/config/log/external_cooling.log"):
-    os.remove("/home/config/log/external_cooling.log")
+# Create log file if it does not exist.
+if not os.path.isfile("/home/config/log/external_cooling.log"):
     f = open("/home/config/log/external_cooling.log", "x")
     f.close()
 else:
-    f = open("/home/config/log/external_cooling.log", "x")
-    f.close()
+    pass
+
 
 logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
 
