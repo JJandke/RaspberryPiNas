@@ -60,9 +60,6 @@ try:
 
     pwm = pigpio.pi()
     logging.debug("{0}pigpio.pi() is now pwm".format(log_time))
-
-    pwm_speed = 100
-    logging.debug("{0}pwm_speed has been set to 100".format(log_time))
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
