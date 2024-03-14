@@ -93,7 +93,7 @@ def cooling():
             print(pwm_speed)
             logging.debug("{0}pwm-speed for GPIO Output #23 has been set to the current pwm_speed".format(log_time))
 
-            pwm_speed + 10
+            pwm_speed = pwm_speed + 10
             logging.debug("{0}pwm_speed has been increased by 10.".format(log_time))
 
             time.sleep(10)
