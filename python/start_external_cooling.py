@@ -7,13 +7,16 @@
 # Therefore, another wiring is not possible and the problem must be solved on software side.
 # With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 
-import RPi.GPIO as GPIO
+
 import os
 import sys
 import time
 import pigpio
 import logging
-import datetime
+import RPi.GPIO as GPIO
+from datetime import datetime
+
+
 
 
 
