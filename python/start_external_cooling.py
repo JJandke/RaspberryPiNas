@@ -15,7 +15,13 @@ import pigpio
 import logging
 import datetime
 
+logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
+now = datetime.now()
 pwm = pigpio.pi()
+pwm_speed = 100
+log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
+
 
 # Create log file if it does not exist.
 if not os.path.isfile("/home/config/log/external_cooling.log"):
@@ -24,13 +30,6 @@ if not os.path.isfile("/home/config/log/external_cooling.log"):
 else:
     pass
 
-
-logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
-
-
-day = datetime.datetime.now()
-log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
-pwm_speed = 100
 
 
 try:
@@ -42,6 +41,8 @@ try:
 
 except Exception as e:
     logging.error("{0}".format(log_time), e)
+
+
 
 # activate fans
 def cooling():
