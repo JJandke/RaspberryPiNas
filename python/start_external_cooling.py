@@ -23,6 +23,7 @@ try:
     log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
 
 except Exception as e:
+    print(e)
     print("FATAL ERROR! - Could not set up logging, exiting!")
     sys.exit(-1)
 
