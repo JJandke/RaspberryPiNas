@@ -77,6 +77,7 @@ except Exception as e:
 def cooling():
     if not os.path.exists("/home/config/code/python/.kill_cooling.txt"):
         logging.debug("{0}Killswitch does not exist".format(log_time))
+
         os.mknod("/home/config/code/python/.kill_cooling.tx")
         logging.debug("{0}Sucessfully created killswitch".format(log_time))                   # create killswitch file to show that cooling is active
     
@@ -108,7 +109,7 @@ def cooling():
             sys.exit(0)
 
 try:
-    logging.debug("{0}Going to start cooling...".format(log_time))
+    logging.info("{0}Going to start cooling...".format(log_time))
     cooling()
     logging.debug("{0}started cooling".format(log_time))
 
