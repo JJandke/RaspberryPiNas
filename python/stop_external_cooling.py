@@ -4,6 +4,7 @@
 #
 
 from datetime import datetime
+import RPi.GPIO as GPIO
 import logging
 import pigpio
 import os
