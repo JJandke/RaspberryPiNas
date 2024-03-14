@@ -7,114 +7,59 @@
 # Therefore, another wiring is not possible and the problem must be solved on software side.
 # With other relay modules it might be that "0" and "1" have to be exchanged. Of course, 0 and 1 can also be replaced by "True" and "False" or "GPIO.HIGH" and "GPIO.LOW".
 
-from gpiozero import CPUTemperature
-import RPi.GPIO as GPIO
+
 import os
+import sys
 import time
 import pigpio
 import logging
 import datetime
+import RPi.GPIO as GPIO
 
-pwm = pigpio.pi()
-update_tmp = 60    # The interval (in seconds) for checking the CPU temperature. A smaller number means shorter updates.
 
-# Create log file for this script
-# Running the script via cronjob at boot will delete the log file each time to save disk space and keep the file more organized.
-if os.path.isfile("/home/config/log/cooling_pi-pwm.log"):
-    os.remove("/home/config/log/cooling_pi-pwm.log")
-    f = open("/home/config/log/cooling_pi-pwm.log", "x")
+logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
+now = datetime.datetime.now()
+log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+
+# Create log file if it does not exist.
+if not os.path.isfile("/home/config/log/external_cooling.log"):
+    f = open("/home/config/log/external_cooling.log", "x")
     f.close()
 else:
-    f = open("/home/config/log/cooling_pi-pwm.log", "x")
-    f.close()
-
-logging.basicConfig(filename="/home/config/log/cooling_pi-pwm.log", level=logging.DEBUG)
-
-
-day = datetime.datetime.now()
-log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
+    pass
 
 
 try:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)     # set setwarnings = False if another script uses the GPIO
-    GPIO.setup(4, GPIO.OUT)     # Pi Relay
-    GPIO.setup(27, GPIO.OUT)    # Pi PWM
     GPIO.setup(17, GPIO.OUT)    # HDD Relay
     GPIO.setup(23, GPIO.OUT)    # HDD PWM
+    pwm = pigpio.pi()
+    pwm_speed = 100
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
     logging.error("{0}".format(log_time), e)
 
 
-# test fan
-GPIO.output(4, 0)
-GPIO.output(17, 0)
-pwm.set_PWM_dutycycle(27, 255)
-pwm.set_PWM_dutycycle(23, 255)
-time.sleep(30)
-GPIO.output(4, 1)
-GPIO.output(17, 1)
-pwm.set_PWM_dutycycle(27, 0)
-pwm.set_PWM_dutycycle(23, 255)
-logging.debug("{0}Tested fans".format(log_time))
+# activate fans
+def cooling():
+    if not os.path.exists("/home/config/code/python/.kill_cooling.txt"):
+        os.mknod("/home/config/code/python/.kill_cooling.tx")                   # create killswitch file to show that cooling is active
+    GPIO.output(17, 0)
+    for pwm_speed in range(255):
+        if os.path.exists("/home/config/code/python/.kill_cooling.txt"):        # checking if killswitch exists...
+            pwm.set_PWM_dutycycle(23, pwm_speed)
+            pwm_speed + 10
+            time.sleep(10)
+        else:
+            GPIO.output(17, 0)                                                  # ...if not, stop cooling
+            pwm.set_PWM_dutycycle(23, 0)
+            sys.exit(0)
 
-# check the CPU temperature
-while True:
-    day = datetime.datetime.now()
-    log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
-    cpu = CPUTemperature()
-    cpuStr = str(cpu.temperature)
+try:
+    cooling()
+    logging.debug("{0}started cooling".format(log_time))
 
-    # Since my fans only rotate when the PWM signal exceeds 100, the percentage does not match the used percentage of the PWM signal.
-    # I assumed in the calculation 100 = 0%.
-    # Therefore, for example, PWM 139 is only 25%, since it represents 25% of the "usable" PWM range [100 - 255 meaning 0% - 100%].
-    # Depending on the fan model, the values must still be adjusted.
-    if cpu.temperature < 40:
-        logging.info("{0}\tCPU Temperature below 40°C => {1}°C\tPi:15%  HDD: 0%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 1)
-        pwm.set_PWM_dutycycle(27, 123)
-        pwm.set_PWM_dutycycle(23, 0)
-        time.sleep(update_tmp)
-
-    elif 40 <= cpu.temperature < 45:
-        logging.info("{0}\tCPU Temperature is {1}°C\tPi:35%  HDD: 35%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 0)
-        pwm.set_PWM_dutycycle(27, 154)
-        pwm.set_PWM_dutycycle(23, 219)
-        time.sleep(update_tmp)
-
-    elif 45 <= cpu.temperature < 50:
-        logging.info("{0}\tCPU Temperature is {1}°C\tPi:50%  HDD: 50%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 0)
-        pwm.set_PWM_dutycycle(27, 177)
-        pwm.set_PWM_dutycycle(23, 227)
-        time.sleep(update_tmp)
-
-    elif 50 <= cpu.temperature <= 60:
-        logging.info("{0}\tCPU Temperature is {1}°C\tPi:75%  HDD: 70%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 0)
-        pwm.set_PWM_dutycycle(27, 216)
-        pwm.set_PWM_dutycycle(23, 238)
-        time.sleep(update_tmp)
-
-    elif 60 <= cpu.temperature <= 70:
-        logging.info("{0}\tCPU Temperature is {1}°C\tPi:85%  HDD: 80%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 0)
-        pwm.set_PWM_dutycycle(27, 231)
-        pwm.set_PWM_dutycycle(23, 244)
-        time.sleep(update_tmp)
-
-    elif cpu.temperature > 80:
-        logging.info("{0}\tCPU Temperature is {1}°C\tPi:100%  HDD: 100%".format(log_time, cpuStr))
-        GPIO.output(4, 0)
-        GPIO.output(17, 0)
-        pwm.set_PWM_dutycycle(27, 255)
-        pwm.set_PWM_dutycycle(23, 255)
-        time.sleep(update_tmp)
+except Exception as e:
+    logging.error("{0}could not start cooling".format(log_time))
