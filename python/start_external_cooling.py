@@ -15,13 +15,11 @@ import pigpio
 import logging
 import datetime
 
+
+
 logging.basicConfig(filename="/home/config/log/external_cooling.log", level=logging.DEBUG)
 now = datetime.now()
-pwm = pigpio.pi()
-pwm_speed = 100
 log_time = now.strftime("%a-%d.%m.%Y-%H:%M:%S ")
-
-
 
 # Create log file if it does not exist.
 if not os.path.isfile("/home/config/log/external_cooling.log"):
@@ -37,6 +35,8 @@ try:
     GPIO.setwarnings(False)     # set setwarnings = False if another script uses the GPIO
     GPIO.setup(17, GPIO.OUT)    # HDD Relay
     GPIO.setup(23, GPIO.OUT)    # HDD PWM
+    pwm = pigpio.pi()
+    pwm_speed = 100
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
