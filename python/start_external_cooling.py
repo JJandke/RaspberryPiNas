@@ -65,8 +65,6 @@ try:
     pwm = pigpio.pi()
     logging.debug("{0}pigpio.pi() is now pwm".format(log_time))
 
-    pwm_speed = 100
-    logging.debug("{0}pwm_speed has been set to 100".format(log_time))
     logging.debug("{0}GPIO successfully configured".format(log_time))
 
 except Exception as e:
@@ -82,6 +80,9 @@ def cooling():
 
         os.mknod("/home/config/code/python/.kill_cooling.txt")
         logging.debug("{0}Sucessfully created killswitch".format(log_time))                   # create killswitch file to show that cooling is active
+
+    pwm_speed = 100
+    logging.debug("{0}pwm_speed has been set to 100".format(log_time))
 
     GPIO.output(17, 0)
     logging.debug("{0}GPIO Output #17 has been set to 0 = On".format(log_time))
