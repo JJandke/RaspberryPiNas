@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # from https://github.com/JJandke
 
-from gpiozero import CPUTemperature
 import datetime
 import requests
 import logging
@@ -50,24 +49,24 @@ while True:
     log_time = day.strftime("%a-%d.%m.%Y-%H:%M:%S ")
     logging.debug("{0}Datetine for logging has again been set, because we're in a endless loop".format(log_time))
 
-    cpu = CPUTemperature()
+    cpu_temp = float(os.popen('vcgencmd measure_temp| sed "s/[^0-9.]//g" ').readline())
     logging.debug("{0}We received the CPU-Temperature".format(log_time))
 
-    cpuStr = str(cpu.temperature)
+    cpuStr = str(cpu_temp)
     logging.debug("{0}We converted the CPU-Temperature as String for logging.".format(log_time))
 
-    if cpu.temperature < 50:
+    if cpu_temp < 50:
         logging.debug("{0}\tCPU Temperature below 50°C => {1}°C, nothing to do".format(log_time, cpuStr))
         time.sleep(update_tmp)
 
-    elif cpu.temperature >= 50:
+    elif cpu_temp >= 50:
         logging.info("{0}\tCPU Temperature is {1}°C, requesting cooling".format(log_time, cpuStr))
         r = requests.get("http://rpi-nas/start_cooling.php")
         logging.debug("{0}Requested URL, now sleeping".format(log_time))
         time.sleep(update_tmp)
         logging.debug("{0}Slept for log_time seconds.".format(log_time))
 
-        while cpu.temperature >= 50:
+        while cpu_temp >= 50:
             logging.debug("{0}CPU-Temperature still > 50°C, sleeping".format(log_time))
             time.sleep(update_tmp)
             logging.debug("{0}Slept again for log_time seconds".format(log_time))
